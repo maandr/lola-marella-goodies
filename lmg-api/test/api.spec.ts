@@ -1,7 +1,7 @@
 import * as mocha from 'mocha'
 import * as request from 'supertest'
 
-describe('loadinig express', () => {
+describe('API', () => {
 
     let server
     let apiClient

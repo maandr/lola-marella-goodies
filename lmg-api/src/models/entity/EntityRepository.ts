@@ -1,11 +1,11 @@
 import { Mysql } from '../database/mysql'
-import db from '../database/mysql'
 
 export default class EntityRepository<T> {
     protected db: Mysql
     protected tableName: string
 
-    constructor(tableName: string) {
+    constructor(db: Mysql, tableName: string) {
+        this.db = db
         this.tableName = tableName
     }
 
