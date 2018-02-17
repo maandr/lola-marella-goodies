@@ -1,11 +1,13 @@
-import app from './app'
+import app from './App'
 
 const PORT = 3000
 
-app.listen(PORT, (error: any) => {
+let server = app.listen(PORT, (error: any) => {
     if(error) {
         console.log(error)
     }
 
     console.log('lmg-backend is listening on port ' + PORT)
 })
+
+export default server
