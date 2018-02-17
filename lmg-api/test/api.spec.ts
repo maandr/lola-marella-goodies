@@ -3,21 +3,21 @@ import * as request from 'supertest'
 
 describe('loadinig express', () => {
 
-    let server: any
-    let apiClient: any
+    let server
+    let apiClient
 
     before(() => {
         server = require('../dist/src/Main.js')
         apiClient = request.agent('http://localhost:3000/api/')
     })
 
-    it('GET /api/health', (done: any) => {
+    it('should return 200 for GET /api/health', (done) => {
         apiClient
             .get('/health')
             .expect(200, done)
     })
 
-    it('GET /non-existing', (done: any) => {
+    it('should return 404 for non existing resource', (done) => {
         apiClient
             .get('/non-existing')
             .expect(404, done)

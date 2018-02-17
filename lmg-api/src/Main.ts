@@ -2,7 +2,7 @@ import app from './App'
 
 const PORT = 3000
 
-let server = app.listen(PORT, (error: any) => {
+let server = app.listen(PORT, (error) => {
     if(error) {
         console.log(error)
     }
