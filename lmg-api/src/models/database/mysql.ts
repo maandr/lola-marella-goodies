@@ -5,7 +5,7 @@ const MYSQL_USERNAME = process.env.MYSQL_USERNAME
 const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD
 const MYSQL_DATABASE = process.env.MYSQL_DATABASE
 
-export default class Mysql {
+export class Mysql {
     private connection: any
 
     constructor() {
@@ -40,3 +40,5 @@ export default class Mysql {
         })
     }
 }
+
+export default new Mysql()
