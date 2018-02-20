@@ -1,3 +1,4 @@
 export default interface Controller {
-    mountRoutes(router): void
+
+    mountRoutes(router: any): void
 }

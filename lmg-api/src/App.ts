@@ -1,5 +1,6 @@
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
+import db from './models/database/mysql'
 import Controller from './controller/Controller'
 import HealthController from './controller/HealthController'
 
@@ -16,8 +17,12 @@ class Application {
         this.express.use('/api', this.router)
 
         this.controllers = [
-            new HealthController(this.router)
+            new HealthController()
         ]
+
+        this.controllers.forEach(controller => {
+            controller.mountRoutes(this.router)
+        })
     }
 }
 

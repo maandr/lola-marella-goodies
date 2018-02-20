@@ -5,22 +5,33 @@ const MYSQL_USERNAME = process.env.MYSQL_USERNAME
 const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD
 const MYSQL_DATABASE = process.env.MYSQL_DATABASE
 
-export class Mysql {
-    private connection: any
+const PRODUCTION_DB = MYSQL_DATABASE
+const DEVELOPMENT_DB = MYSQL_DATABASE + "_develop"
+const TEST_DB = MYSQL_DATABASE + "_test"
 
-    constructor() {
+class Mysql {
+    private connection: any
+    public constructor() {
         this.connect()
     }
 
     public connect(): void {
+        console.log("Connection to " + MYSQL_HOSTNAME)
+        console.log("Credentials: " + MYSQL_USERNAME + "@" + MYSQL_PASSWORD)
+        console.log("Using database: " + this.getDatabase())
+
         this.connection = mysql.createConnection({
             host     : MYSQL_HOSTNAME,
             user     : MYSQL_USERNAME,
             password : MYSQL_PASSWORD,
-            database : MYSQL_DATABASE
+            database : this.getDatabase()
         })
         this.connection.connect((error) => {
-            if(error) console.log(error)
+            if(error) {
+                console.log(error)
+            } else {
+                console.log("Connected.")
+            }
         })
     }
 
@@ -30,7 +41,6 @@ export class Mysql {
                 if(error) {
                     reject(error)
                 }
-
                 if(results.length > 1) {
                     resolve(results)
                 } else {
@@ -38,6 +48,20 @@ export class Mysql {
                 }
             })
         })
+    }
+
+    private getDatabase(): string {
+        switch(process.env.NODE_ENV) {
+            case "prod":
+                return PRODUCTION_DB
+            case "dev":
+                return DEVELOPMENT_DB
+            case "test":
+                return TEST_DB
+            default:
+                console.warn("NODE_ENV is not set - falling back to dev.")
+                return DEVELOPMENT_DB
+        }
     }
 }
 
