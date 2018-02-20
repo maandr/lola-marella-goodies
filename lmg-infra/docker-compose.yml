@@ -9,7 +9,7 @@ services:
       - db_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: lola-marella-goodies
+      MYSQL_DATABASE: lolamarellagoodies
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin
   api:
@@ -19,7 +19,7 @@ services:
     environment:
       MYSQL_USERNAME: admin
       MYSQL_PASSWORD: admin
-      MYSQL_DATABASE: lola-marella-goodies
+      MYSQL_DATABASE: lolamarellagoodies
 
 volumes:
   db_data:
