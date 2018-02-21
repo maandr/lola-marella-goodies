@@ -1,9 +1,12 @@
 import EntityRepository from '../entity/EntityRepository'
 import Product from './Product'
+import ProductController from '../../controller/ProductController';
 
-export default class ProductRepository extends EntityRepository<Product> {
+class ProductRepository extends EntityRepository<Product> {
     
     constructor() {
         super("products")
     }
 }
+
+export default new ProductRepository()
