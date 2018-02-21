@@ -11,6 +11,9 @@ RUN npm install
 # Bundle source
 COPY . .
 
+# Run database migrations
+RUN npm run migrations up
+
 # Expose application port
 EXPOSE 3000
 
